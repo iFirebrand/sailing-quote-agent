@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "sailing-quote-agent"
+version = "0.1.0"
+description = "A Theoriq agent that provides sailing-themed quotes based on ETH price movements"
+authors = ["Your Name <your.email@example.com>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.1.0"
+flask-cors = "^4.0.0"
+gunicorn = "^21.2.0"
+theoriq = { git = "https://github.com/chain-ml/theoriq-agent-sdk.git", extras = ["flask"] }
+python-dotenv = "^1.0.0"
+web3 = "^6.15.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
