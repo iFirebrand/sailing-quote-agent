@@ -18,10 +18,10 @@ WORKDIR /app
 # Install Poetry
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
-# Copy Poetry files
-COPY pyproject.toml poetry.lock ./
+# Copy pyproject.toml first
+COPY pyproject.toml ./
 
-# Install dependencies
+# Install dependencies without poetry.lock
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi
 
