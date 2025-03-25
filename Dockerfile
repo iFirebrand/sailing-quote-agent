@@ -15,8 +15,9 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 # Set working directory
 WORKDIR /app
 
-# Install Poetry
-RUN curl -sSL https://install.python-poetry.org | python3 -
+# Install Poetry and add it to PATH
+RUN curl -sSL https://install.python-poetry.org | python3 - && \
+    ln -s /root/.local/bin/poetry /usr/local/bin/poetry
 
 # Copy pyproject.toml first
 COPY pyproject.toml ./
@@ -36,4 +37,4 @@ ENV PYTHONUNBUFFERED=1
 EXPOSE 8000
 
 # Run with Gunicorn
-CMD ["poetry", "run", "gunicorn", "--bind", "0.0.0.0:8000", "--access-logfile", "-", "--error-logfile", "-", "main:create_app()"]
+CMD ["poetry", "run", "gunicorn", "--bind", "0.0.0.0:8000", "--access-logfile", "-", "--error-logfile", "-", "main:create_app()"] 
